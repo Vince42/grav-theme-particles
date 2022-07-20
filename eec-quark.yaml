@@ -1,0 +1,24 @@
+streams:
+ schemes:
+   theme:
+     type: ReadOnlyStream
+     prefixes:
+       '':
+         - 'user://themes/eec-quark'
+         - 'user://themes/quark'
+
+enabled: true
+production-mode: true
+grid-size: grid-lg
+header-fixed: true
+header-animated: true
+header-dark: false
+header-transparent: false
+sticky-footer: true
+blog-page: &#039;/blog&#039;
+spectre:
+  exp: false
+  icons: false
+custom_logo:
+  - name: logo-full.png
+

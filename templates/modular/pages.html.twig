@@ -1,0 +1,34 @@
+{% set grid_size = theme_var('grid-size') %}
+{% set pages = page.collection('pages') %}
+{% set taxonomies = page.collection('taxonomies') %}
+{% set collection = pages.intersect(taxonomies) %}
+
+{% block stylesheets %}
+    {% do assets.addCss('theme://css/bricklayer.css') %}
+{% endblock %}
+
+{% block javascripts %}
+    {% do assets.add('theme://js/bricklayer.min.js') %}
+    {% do assets.add('theme://js/scopedQuerySelectorShim.min.js') %}
+{% endblock %}
+
+{% block body %}
+    <section id="body-wrapper" class="section blog-listing">
+        <section class="container {{ grid_size }}">
+        {% embed 'partials/layout.html.twig' with {page} %}
+            {% block item %}
+                <div class="bricklayer">
+                {% for page in collection %}
+                    {% include 'partials/page-summary.html.twig' with {page} %}
+                {% endfor %}
+                </div>
+            {% endblock %}
+        {% endembed %}
+        </section>
+    </section>
+    <script>
+        //Bricklayer
+        var bricklayer = new Bricklayer(document.querySelector('.bricklayer'))
+    </script>
+{% endblock %}
+

@@ -1,0 +1,8 @@
+<section id="footer" class="section bg-gray">
+  <section class="container {{ grid_size }}">
+    {% set content = pages.find('/footer').content %}
+    {% if content %}
+      <p>{{content|raw}}</p>
+    {% endif %}    
+  </section>
+</section>

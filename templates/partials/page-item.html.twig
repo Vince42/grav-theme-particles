@@ -1,0 +1,13 @@
+<div class="content-item h-entry">
+{% if not hero_image_name %}
+    <div class="content-title">
+        {% include 'partials/blog/title.html.twig' with {title_level: 'h1'} %}
+        {% if page.header.subtitle %}
+        <h2 >{{ page.header.subtitle }}</h2>
+        {% endif %}
+    </div>
+{% endif %}
+    <div class="e-content">
+        {{ page.content|raw }}
+    </div>
+</div>
