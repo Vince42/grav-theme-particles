@@ -15,11 +15,11 @@
 
     <section id="body-wrapper" class="section blog-listing">
         <section class="container {{ grid_size }}">
-        {% embed 'partials/layout.html.twig' with {page} %}
+        {% embed 'partials/layout.html.twig' %}
             {% block item %}
                 <div id="{{ grid_id }}" class="bricklayer">
                 {% for page in collection %}
-                    {% include 'partials/page-summary.html.twig' with {page} %}
+                    {% include 'partials/page-summary.html.twig' with {'page': page} %}
                 {% endfor %}
                 </div>
             {% endblock %}
