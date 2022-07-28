@@ -7,21 +7,17 @@
     {% set collection = pages.intersect(taxonomies) %}
 {% endif %}
 
-{% block stylesheets %}
-    {% do assets.addCss('theme://css/bricklayer.css') %}
-{% endblock %}
-
-{% block javascripts %}
-    {% do assets.add('theme://js/bricklayer.min.js') %}
-    {% do assets.add('theme://js/scopedQuerySelectorShim.min.js') %}
-{% endblock %}
-
 {% block body %}
+    {% do assets.addCss('theme://css/bricklayer.css') %}
+    {% do assets.add('theme://js/bricklayer.min.js') %}
+
+    {% set grid_id = unique_id() %}
+
     <section id="body-wrapper" class="section blog-listing">
         <section class="container {{ grid_size }}">
         {% embed 'partials/layout.html.twig' with {page} %}
             {% block item %}
-                <div class="bricklayer">
+                <div id="{{ grid_id }}" class="bricklayer">
                 {% for page in collection %}
                     {% include 'partials/page-summary.html.twig' with {page} %}
                 {% endfor %}
@@ -30,9 +26,13 @@
         {% endembed %}
         </section>
     </section>
-    <script>
-        //Bricklayer
-        var bricklayer = new Bricklayer(document.querySelector('.bricklayer'))
-    </script>
-{% endblock %}
 
+    {% script at 'bottom' %}
+        $(document).ready ( function() {
+            var $grid = $('#{{ grid_id }}');
+            if ($grid.length == 1) {
+                var bricklayer = new Bricklayer($grid[0]);
+            }
+        });
+    {% endscript %}
+{% endblock %}
