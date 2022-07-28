@@ -1,7 +1,11 @@
 {% set grid_size = theme_var('grid-size') %}
 {% set pages = page.collection('pages') %}
 {% set taxonomies = page.collection('taxonomies') %}
-{% set collection = pages.intersect(taxonomies) %}
+{% if taxonomies is empty %}
+    {% set collection = pages %}
+{% else %}
+    {% set collection = pages.intersect(taxonomies) %}
+{% endif %}
 
 {% block stylesheets %}
     {% do assets.addCss('theme://css/bricklayer.css') %}
