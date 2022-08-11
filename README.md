@@ -28,7 +28,10 @@ It would be nice to brand a site with a primary and secondary colour. Those colo
 ### Font
 It would be nice, if the user could upload his own font for the site.
 
-### Other module ideas
+### Free stock pictures
+It would be great to have an option to search online for pictures from free stock sites like unsplash or pexels and to add those to the page media
+
+#.## Other module ideas
 - Google Maps
 - Twitter feed
 - Google Docs
