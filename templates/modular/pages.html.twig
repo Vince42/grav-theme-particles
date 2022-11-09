@@ -15,6 +15,7 @@
 
     <section id="body-wrapper" class="section blog-listing">
         <section class="container {{ grid_size }}">
+        {{ content|raw }}
         {% embed 'partials/layout.html.twig' %}
             {% block item %}
                 <div id="{{ grid_id }}" class="bricklayer">
