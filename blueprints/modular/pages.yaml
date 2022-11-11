@@ -1,0 +1,59 @@
+title: Pages
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      fields:
+        members:
+          type: tab
+          title: Members
+          fields:
+            # header.class:
+            #   type: select
+            #   label: Layout
+            #   default: small
+            #   size: medium
+            #   options:
+            #     small: Small   = 4 / 3 / 2 columns
+            #     standard: Standard  = 3 / 2 / 1 columns
+
+            # .icon:
+            #   type: iconpicker
+            #   label: Icon
+
+            header.pages.items:
+              name: items
+              type: list
+              label: Items
+              fields:
+                .@page.children:
+                  readonly: true
+                  type: pages
+                  label: Parent
+
+            header.pages.limit:
+              type: text
+              label: Max Item Count
+              validate:
+                type: int
+                min: 1
+
+            header.pages.order.by:
+              type: select
+              label: Order By
+              default: date
+              options:
+                folder: Folder
+                title: Title
+                date: Date
+                default: Default
+
+            header.pages.order.dir:
+              type: select
+              label: Order
+              default: desc
+              options:
+                asc: Ascending
+                desc: Descending
+
