@@ -5,9 +5,9 @@ form:
   fields:
     tabs:
       fields:
-        members:
+        modules:
           type: tab
-          title: Members
+          title: Modules
           fields:
             # header.class:
             #   type: select
@@ -22,24 +22,95 @@ form:
             #   type: iconpicker
             #   label: Icon
 
-            header.pages.items:
-              name: items
-              type: list
-              label: Items
-              fields:
-                .@page.children:
-                  readonly: true
-                  type: pages
-                  label: Parent
+            # header.modules.members:
+            #   type: list
+            #   label: Items
+            #   fields:
+            #     .type:
+            #       # type: text
+            #       # label: Dummy
+            #       type: elements
+            #       # label: false
+            #       # default: children
+            #       options:
+            #         children: Direct children of
+            #         # modules: Modules of
+            #         # siblings: Siblings of
+            #         taxonomy: Taxonomy matches
+            #       fields:
+            #         children:
+            #           type: element
+            #           fields:
+            #             # .type:
+            #             #   type: text
+            #             #   readonly: true
+            #             #   # disabled: true
+            #             #   label: false
+            #             #   default: children
+            #             .page:
+            #               label: Page
+            #               type: pages
+            #         taxonomy:
+            #           type: element
+            #           fields:
+            #             .vocabulary:
+            #               label: Vocab
+            #               type: text
+            #             .term:
+            #               label: Term
+            #               type: text
 
-            header.pages.limit:
+            header.modules.members:
+              text: 'Show these items ...'
+              type: section
+              # underline: true
+              fields:
+                .children:
+                  label: Show direct children of these pages
+                  type: pages
+                  multiple: true
+                  validate:
+                    type: array
+                  # selectize: true
+                .siblings:
+                  label: Show any siblings of these pages
+                  type: pages
+                  multiple: true
+                  validate:
+                    type: array
+                .modules:
+                  label: Show any modules of these pages
+                  type: pages
+                  multiple: true
+                  validate:
+                    type: array
+                .taxonomy:
+                  label: Taxonomy matches
+                  type: taxonomy
+                  multiple: true
+
+
+
+
+
+            # header.pages.items:
+            #   name: items
+            #   type: list
+            #   label: Items
+            #   fields:
+            #     .@page.children:
+            #       readonly: true
+            #       type: pages
+            #       label: Parent
+
+            header.modules.limit:
               type: text
               label: Max Item Count
               validate:
                 type: int
                 min: 1
 
-            header.pages.order.by:
+            header.modules.order.by:
               type: select
               label: Order By
               default: date
@@ -49,7 +120,7 @@ form:
                 date: Date
                 default: Default
 
-            header.pages.order.dir:
+            header.modules.order.dir:
               type: select
               label: Order
               default: desc
