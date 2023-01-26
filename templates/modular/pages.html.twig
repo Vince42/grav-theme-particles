@@ -1,8 +1,8 @@
 {% set grid_size = theme_var('grid-size') %}
 
 {# create a page collection from headers which are unfortunately not proper page collections, see https://github.com/getgrav/grav-plugin-admin/issues/2280 #}
-{% set pages_parameters = {} %}
 {% if page.header.modules %}
+
     {% set modules = page.header.modules %}
     {% if modules.members %}
         {% set items_filter = {} %}
@@ -16,23 +16,32 @@
             {% set items_filter = items_filter|merge({'@page.modular': modules.members.modules}) %}
         {% endif %}
 
-        {# _maybe_ use page.intersect() for the taxonomy selections (rather than page.merge()) #}
-        {% set pages_parameters = pages_parameters|merge({'items': items_filter}) %}
-
-        {# we set collection options here because there's no point unless there are items specified #}
-        {% if modules.order %}
-            {% set pages_parameters = pages_parameters|merge({'order': modules.order}) %}
+        {% if items_filter is not empty %}
+            {% set pages_collection = page.collection({'items': items_filter}) %}
         {% endif %}
-        {% if modules.limit %}
-            {% set pages_parameters = pages_parameters|merge({'limit': modules.limit}) %}
+
+        {# use page.intersect() for the taxonomy selections (rather than page.merge()) #}
+        {% if modules.members.taxonomy %}
+            {% set taxonomy_collection = page.collection({'items': {'@taxonomy': modules.members.taxonomy}}) %}
+            {% set pages_collection = ( pages_collection is defined ? pages_collection.intersect(taxonomy_collection) : taxonomy_collection )  %}
+        {% endif %}
+
+        {# set collection options using collection methods because we needed to instantiate the collection to run intersect() on any taxonomy parameters specified in frontmatter #}
+        {% if pages_collection is defined %}
+            {% if modules.order %}
+                {% do pages_collection.order(modules.order.by, modules.order.dir|default('asc')) %}
+            {% endif %}
+            {% if modules.limit %}
+                {% do pages_collection.slice(0, modules.limit) %}
+            {% endif %}
         {% endif %}
 
     {% endif %}
+
 {% endif %}
 
 {% block body %}
-    {% if pages_parameters is not empty %}
-        {% set collection = page.collection(pages_parameters) %}
+    {% if pages_collection is defined %}
         {% do assets.addCss('theme://css/bricklayer.css') %}
         {% do assets.add('theme://js/bricklayer.min.js') %}
 
@@ -44,7 +53,7 @@
             {% embed 'partials/layout.html.twig' %}
                 {% block item %}
                     <div id="{{ grid_id }}" class="bricklayer">
-                    {% for page in collection %}
+                    {% for page in pages_collection %}
                         {% include 'partials/page-summary.html.twig' with {'page': page} %}
                     {% endfor %}
                     </div>
