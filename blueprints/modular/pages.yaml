@@ -35,8 +35,8 @@ form:
                   multiple: true
                   validate:
                     type: array
-                .siblings:
-                  label: Show any siblings of these pages
+                .descendants:
+                  label: Show descendants of these pages
                   type: pages
                   multiple: true
                   validate:

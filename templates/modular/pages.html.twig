@@ -9,7 +9,13 @@
         {% if modules.members.children %}
             {% set items_filter = items_filter|merge({'@page.children': modules.members.children}) %}
         {% endif %}
-        {# TODO: set other faux collection parameters here #}
+        {% if modules.members.descendants %}
+            {% set items_filter = items_filter|merge({'@page.descendants': modules.members.descendants}) %}
+        {% endif %}
+        {% if modules.members.modules %}
+            {% set items_filter = items_filter|merge({'@page.modular': modules.members.modules}) %}
+        {% endif %}
+
         {# _maybe_ use page.intersect() for the taxonomy selections (rather than page.merge()) #}
         {% set pages_parameters = pages_parameters|merge({'items': items_filter}) %}
         {# TODO: set collection options here because there's no point unless there are items specified #}
