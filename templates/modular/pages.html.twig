@@ -18,7 +18,15 @@
 
         {# _maybe_ use page.intersect() for the taxonomy selections (rather than page.merge()) #}
         {% set pages_parameters = pages_parameters|merge({'items': items_filter}) %}
-        {# TODO: set collection options here because there's no point unless there are items specified #}
+
+        {# we set collection options here because there's no point unless there are items specified #}
+        {% if modules.order %}
+            {% set pages_parameters = pages_parameters|merge({'order': modules.order}) %}
+        {% endif %}
+        {% if modules.limit %}
+            {% set pages_parameters = pages_parameters|merge({'limit': modules.limit}) %}
+        {% endif %}
+
     {% endif %}
 {% endif %}
 
