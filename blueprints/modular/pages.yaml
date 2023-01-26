@@ -60,6 +60,20 @@ form:
             #               label: Term
             #               type: text
 
+# Preferred output for `members` would have been:
+
+#   members:
+#     -
+#       type: children # descendents, siblings, modules
+#       page: '/blog' # default self
+#     -
+#       type: taxonomy
+#       vocabulary: category
+#       term: Service
+
+# This is necessary because https://github.com/getgrav/grav-plugin-admin/issues/2280
+# .. and also because the Elements field type doesn't seem very mature yet, was hoping a list of those would get me over the line
+
             header.modules.members:
               text: 'Show these items ...'
               type: section
