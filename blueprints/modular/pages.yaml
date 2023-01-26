@@ -9,70 +9,20 @@ form:
           type: tab
           title: Modules
           fields:
-            # header.class:
-            #   type: select
-            #   label: Layout
-            #   default: small
-            #   size: medium
-            #   options:
-            #     small: Small   = 4 / 3 / 2 columns
-            #     standard: Standard  = 3 / 2 / 1 columns
 
-            # .icon:
-            #   type: iconpicker
-            #   label: Icon
+            # Preferred output for `members` would have been:
 
-            # header.modules.members:
-            #   type: list
-            #   label: Items
-            #   fields:
-            #     .type:
-            #       # type: text
-            #       # label: Dummy
-            #       type: elements
-            #       # label: false
-            #       # default: children
-            #       options:
-            #         children: Direct children of
-            #         # modules: Modules of
-            #         # siblings: Siblings of
-            #         taxonomy: Taxonomy matches
-            #       fields:
-            #         children:
-            #           type: element
-            #           fields:
-            #             # .type:
-            #             #   type: text
-            #             #   readonly: true
-            #             #   # disabled: true
-            #             #   label: false
-            #             #   default: children
-            #             .page:
-            #               label: Page
-            #               type: pages
-            #         taxonomy:
-            #           type: element
-            #           fields:
-            #             .vocabulary:
-            #               label: Vocab
-            #               type: text
-            #             .term:
-            #               label: Term
-            #               type: text
+            #   members:
+            #     -
+            #       type: children # descendents, siblings, modules
+            #       page: '/blog' # default self
+            #     -
+            #       type: taxonomy
+            #       vocabulary: category
+            #       term: Service
 
-# Preferred output for `members` would have been:
-
-#   members:
-#     -
-#       type: children # descendents, siblings, modules
-#       page: '/blog' # default self
-#     -
-#       type: taxonomy
-#       vocabulary: category
-#       term: Service
-
-# This is necessary because https://github.com/getgrav/grav-plugin-admin/issues/2280
-# .. and also because the Elements field type doesn't seem very mature yet, was hoping a list of those would get me over the line
+            # This is necessary because https://github.com/getgrav/grav-plugin-admin/issues/2280
+            # .. and also because the Elements field type doesn't seem very mature yet, was hoping a list of those would get me over the line
 
             header.modules.members:
               text: 'Show these items ...'
@@ -85,7 +35,6 @@ form:
                   multiple: true
                   validate:
                     type: array
-                  # selectize: true
                 .siblings:
                   label: Show any siblings of these pages
                   type: pages
@@ -102,20 +51,6 @@ form:
                   label: Taxonomy matches
                   type: taxonomy
                   multiple: true
-
-
-
-
-
-            # header.pages.items:
-            #   name: items
-            #   type: list
-            #   label: Items
-            #   fields:
-            #     .@page.children:
-            #       readonly: true
-            #       type: pages
-            #       label: Parent
 
             header.modules.limit:
               type: text
@@ -141,4 +76,3 @@ form:
               options:
                 asc: Ascending
                 desc: Descending
-

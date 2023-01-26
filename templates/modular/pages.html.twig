@@ -1,38 +1,51 @@
 {% set grid_size = theme_var('grid-size') %}
-{% set pages = page.collection('pages') %}
-{% set taxonomies = page.collection('taxonomies') %}
-{% if taxonomies is empty %}
-    {% set collection = pages %}
-{% else %}
-    {% set collection = pages.intersect(taxonomies) %}
+
+{# create a page collection from headers which are unfortunately not proper page collections, see https://github.com/getgrav/grav-plugin-admin/issues/2280 #}
+{% set pages_parameters = {} %}
+{% if page.header.modules %}
+    {% set modules = page.header.modules %}
+    {% if modules.members %}
+        {% set items_filter = {} %}
+        {% if modules.members.children %}
+            {% set items_filter = items_filter|merge({'@page.children': modules.members.children}) %}
+        {% endif %}
+        {# TODO: set other faux collection parameters here #}
+        {# _maybe_ use page.intersect() for the taxonomy selections (rather than page.merge()) #}
+        {% set pages_parameters = pages_parameters|merge({'items': items_filter}) %}
+        {# TODO: set collection options here because there's no point unless there are items specified #}
+    {% endif %}
 {% endif %}
 
 {% block body %}
-    {% do assets.addCss('theme://css/bricklayer.css') %}
-    {% do assets.add('theme://js/bricklayer.min.js') %}
+    {% if pages_parameters is not empty %}
+        {% set collection = page.collection(pages_parameters) %}
+        {% do assets.addCss('theme://css/bricklayer.css') %}
+        {% do assets.add('theme://js/bricklayer.min.js') %}
 
-    {% set grid_id = unique_id() %}
+        {% set grid_id = unique_id() %}
 
-    <section id="body-wrapper" class="section blog-listing">
-        <section class="container {{ grid_size }}">
-        {% embed 'partials/layout.html.twig' %}
-            {% block item %}
-                <div id="{{ grid_id }}" class="bricklayer">
-                {% for page in collection %}
-                    {% include 'partials/page-summary.html.twig' with {'page': page} %}
-                {% endfor %}
-                </div>
-            {% endblock %}
-        {% endembed %}
+        <section id="body-wrapper" class="section blog-listing">
+            <section class="container {{ grid_size }}">
+
+            {% embed 'partials/layout.html.twig' %}
+                {% block item %}
+                    <div id="{{ grid_id }}" class="bricklayer">
+                    {% for page in collection %}
+                        {% include 'partials/page-summary.html.twig' with {'page': page} %}
+                    {% endfor %}
+                    </div>
+                {% endblock %}
+            {% endembed %}
+            </section>
         </section>
-    </section>
 
-    {% script at 'bottom' %}
-        $(document).ready ( function() {
-            var $grid = $('#{{ grid_id }}');
-            if ($grid.length == 1) {
-                var bricklayer = new Bricklayer($grid[0]);
-            }
-        });
-    {% endscript %}
+        {% script at 'bottom' %}
+            $(document).ready ( function() {
+                var $grid = $('#{{ grid_id }}');
+                if ($grid.length == 1) {
+                    var bricklayer = new Bricklayer($grid[0]);
+                }
+            });
+        {% endscript %}
+    {% endif %}
 {% endblock %}
