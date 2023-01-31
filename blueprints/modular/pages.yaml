@@ -25,24 +25,24 @@ form:
             # .. and also because the Elements field type doesn't seem very mature yet, was hoping a list of those would get me over the line
 
             header.modules.members:
-              text: 'Show these items ...'
+              title: 'Show these items ...'
               type: section
               # underline: true
               fields:
                 .children:
-                  label: Show direct children of these pages
+                  label: Direct children of these pages
                   type: pages
                   multiple: true
                   validate:
                     type: array
                 .descendants:
-                  label: Show descendants of these pages
+                  label: Descendants of these pages
                   type: pages
                   multiple: true
                   validate:
                     type: array
                 .modules:
-                  label: Show any modules of these pages
+                  label: Any modules of these pages
                   type: pages
                   multiple: true
                   validate:
