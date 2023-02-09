@@ -16,3 +16,16 @@ license: MIT
 
 dependencies:
   - { name: grav, version: '>=1.6.0' }
+
+form:
+  validation: loose
+
+  fields:
+
+    parent_settings:
+      type: display
+      label: Note
+      size: large
+      markdown: true
+      content: 'Change basic theme settings like logo and icon under the [base theme, "Quark"](admin/themes/quark).' # FIXME: confirm that this link is safe in all env contexts
+
