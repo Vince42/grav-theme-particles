@@ -29,3 +29,13 @@ form:
       markdown: true
       content: 'Change basic theme settings like logo and icon under the [base theme, "Quark"](admin/themes/quark).' # FIXME: confirm that this link is safe in all env contexts
 
+    custom_logo:
+      type: file
+      label: Custom Logo
+      size: large
+      destination: 'theme://images/logo'
+      multiple: false
+      markdown: true
+      description: Will be used instead of default logo `theme://images/grav-logo.svg`
+      accept:
+        - image/*
