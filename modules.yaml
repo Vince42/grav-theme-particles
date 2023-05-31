@@ -15,7 +15,7 @@ header-animated: true
 header-dark: false
 header-transparent: false
 sticky-footer: true
-blog-page: &#039;/blog&#039;
+blog-page: /blog
 spectre:
   exp: false
   icons: false
