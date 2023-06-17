@@ -33,7 +33,7 @@ form:
       type: file
       label: Custom Logo
       size: large
-      destination: 'theme://images/logo'
+      destination: 'image://logo'
       multiple: false
       markdown: true
       description: Will be used instead of default logo `theme://images/grav-logo.svg`
