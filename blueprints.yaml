@@ -32,10 +32,20 @@ form:
     custom_logo:
       type: file
       label: Custom Logo
-      size: large
       destination: 'image://logo'
       multiple: false
       markdown: true
       description: Will be used instead of default logo `theme://images/grav-logo.svg`
       accept:
         - image/*
+
+    custom_logo_mobile:
+      type: file
+      label: Mobile Custom Logo
+      destination: 'image://logo'
+      multiple: false
+      markdown: true
+      description: Will be used instead of default logo `theme://images/grav-logo.svg`
+      accept:
+        - image/*
+
