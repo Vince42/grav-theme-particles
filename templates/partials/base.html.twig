@@ -1,0 +1,21 @@
+{% extends '@quark/partials/base.html.twig' %}
+
+{% block head deferred %}
+	{# adapted copy from parent theme, can't be inherited unfortunately #}
+	<meta charset="utf-8" />
+	<title>{% if page.title %}{{ page.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{{ include('partials/metadata.html.twig') }}
+
+	{% set favicons = theme_var('custom_favicon') %}
+	{% if favicons is not empty and favicons is iterable %}
+		{% set favicon = favicons|first %}
+		{% set favicon_type = favicon['type'] %}
+		{% set favicon_medium = media['image://' ~ favicon['name']] %}
+	{% endif %}
+	<link rel="icon" type="{{ favicon_type|default('image/png') }}" href="{{ favicon_medium ? favicon_medium.forceResize(128,128).url : url('theme://images/favicon.png') }}" />
+
+	<link rel="canonical" href="{{ page.url(true, true) }}" />
+{% endblock head %}

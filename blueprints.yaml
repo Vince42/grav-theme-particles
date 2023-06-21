@@ -29,6 +29,18 @@ form:
       markdown: true
       content: 'Change basic theme settings like logo and icon under the [base theme, "Quark"](admin/themes/quark).' # FIXME: confirm that this link is safe in all env contexts
 
+    custom_favicon:
+      type: file
+      label: Site favorites icon
+      destination: 'image://'
+      multiple: false
+      markdown: true
+      description: "Select a small square [\"favicon\"](https://developer.mozilla.org/en-US/docs/Glossary/Favicon) image (maximum 256x256px). Browsers typically show this next to page titles in a tab, or next to a bookmarked page; search engines and other agents also show this in some contexts"
+      accept:
+        - .png
+        - .gif
+        - .ico
+
     custom_logo:
       type: file
       label: Custom Logo
