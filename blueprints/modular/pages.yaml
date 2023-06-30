@@ -25,7 +25,7 @@ form:
             # .. and also because the Elements field type doesn't seem very mature yet, was hoping a list of those would get me over the line
 
             header.modules.members:
-              title: 'Show these items ...'
+              title: 'Show any of these items ...'
               type: section
               # underline: true
               fields:
@@ -47,32 +47,41 @@ form:
                   multiple: true
                   validate:
                     type: array
-                .taxonomy:
-                  label: Taxonomy matches
+
+            section.filters:
+              title: 'Filter for these criteria ...'
+              type: section
+              fields:
+                header.modules.members.taxonomy:
+                  # label: Filter for these taxonomy terms
                   type: taxonomy
                   multiple: true
+                  validate:
+                    type: array
 
-            header.modules.limit:
-              type: text
-              label: Max Item Count
-              validate:
-                type: int
-                min: 1
-
-            header.modules.order.by:
-              type: select
-              label: Order By
-              default: date
-              options:
-                folder: Folder
-                title: Title
-                date: Date
-                default: Default
-
-            header.modules.order.dir:
-              type: select
-              label: Order
-              default: desc
-              options:
-                asc: Ascending
-                desc: Descending
+            section.display:
+              title: 'Display options'
+              type: section
+              fields:
+                header.modules.limit:
+                  type: text
+                  label: Max Item Count
+                  validate:
+                    type: int
+                    min: 1
+                header.modules.order.by:
+                  type: select
+                  label: Order By
+                  default: date
+                  options:
+                    folder: Folder
+                    title: Title
+                    date: Date
+                    default: Default
+                header.modules.order.dir:
+                  type: select
+                  label: Order
+                  default: desc
+                  options:
+                    asc: Ascending
+                    desc: Descending
