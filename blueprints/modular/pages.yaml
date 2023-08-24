@@ -5,6 +5,13 @@ form:
   fields:
     tabs:
       fields:
+        content:
+          fields:
+            header.deck_heading:
+              type: text
+              label: Group heading for the deck of pages
+              ordering@: header.title
+
         modules:
           type: tab
           title: Modules

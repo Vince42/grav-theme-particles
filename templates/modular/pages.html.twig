@@ -52,6 +52,10 @@
 
             {% embed 'partials/layout.html.twig' %}
                 {% block item %}
+                    {% if page.header.title or page.header.deck_heading %}
+                        <h2>{{ page.header.deck_heading|default(page.title) }}</h2>
+                    {% endif %}
+                    {{ page.content|raw }}
                     <div id="{{ grid_id }}" class="bricklayer">
                     {% for page in pages_collection %}
                         {% include 'partials/page-summary.html.twig' with {'page': page} %}
