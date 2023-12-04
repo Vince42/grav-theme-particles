@@ -4,36 +4,28 @@ The **Modules** Theme is for [Grav CMS](http://github.com/getgrav/grav).  This R
 ## Description
 The theme is based on Quark.
 
-## Feature requests
-I will describe the rough ideas, of what the theme should be able to do in the future.
+# Installation
+<!--
 
-### Page module
-The page module displays bricks for every page of a specified subset of pages. The visual appearance is like the one on the blog page. The subset is specified by collecting the pages of a certain folder and to filter those by a specified taxonomy. The amount of page summaries should be customizable.
-The ultimate functionality would allow to gather pages from several folders and to filter them by different criteria connected with AND and OR.
+Installing the Modules theme can be done in one of two ways. Our GPM (Grav Package Manager) installation method enables you to quickly and easily install the theme with a simple terminal command, while the manual method enables you to do so via a zip file. 
 
-### Picture module
-The picture module should work like a gallery or a slideshow. The user should be able to select media and to specify, whether all media is displayed at once (customizable limiitation as in the page module) or a certain amount of media slots are displayed and all media are scrolled.
+The theme by itself is useful, but you may have an easier time getting up and running by installing a skeleton. The Modules theme can be found in both the [One-page](https://github.com/getgrav/grav-skeleton-onepage-site) and [Blog Site](https://github.com/getgrav/grav-skeleton-blog-site) which are self-contained repositories for a complete sites which include: sample content, configuration, theme, and plugins.
 
-### Feature module 2
-The "feature module 2" should work like the feature module, but with uploadable graphics
+## GPM Installation (Preferred)
 
-### Graphics administration
-The following graphics should be specifyable through the admin interface:
-- Site logo
-- Favourite icon
+The simplest way to install this theme is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's Terminal (also called the command line).  From the root of your Grav install type:
 
-### Default colours
-It would be nice to brand a site with a primary and secondary colour. Those colours should be specifyable through the admin interface.
+    bin/gpm install modules
 
-### Font
-It would be nice, if the user could upload his own font for the site.
+This will install the Modules theme into your `/user/themes` directory within Grav. Its files can be found under `/your/site/grav/user/themes/modules`.
+-->
+## Manual Installation
 
-### Free stock pictures
-It would be great to have an option to search online for pictures from free stock sites like unsplash or pexels and to add those to the page media
+To install this theme, just download the zip version of this repository and unzip it under `/your/site/grav/user/themes`. Then, rename the folder to `modules`. You can find these files either on [GitHub](https://github.com/Vince42/grav-theme-modules)<!-- or via [GetGrav.org](http://getgrav.org/downloads/themes)-->.
 
-#.## Other module ideas
-- Google Maps
-- Twitter feed
-- Google Docs
-- YouTube
-- &hellip
+You should now have all the theme files under
+
+    /your/site/grav/user/themes/modules
+
+## Usage
+

@@ -1,8 +1,8 @@
 name: Modules
 slug: modules
 type: theme
-version: 0.1.1
-description: EEC theme based on Quark
+version: 0.1.2
+description: Modules theme based on Quark
 icon: rebel
 author:
   name: Vince42

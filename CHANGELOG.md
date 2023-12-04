@@ -1,5 +1,5 @@
-# v0.1.0
-##  05/20/2022
+# v0.1.2
+##  2023-08-24
 
 1. [](#new)
-    * ChangeLog started...
+    * Add modular templates and blueprints, allowing complex selection of other pages from the site

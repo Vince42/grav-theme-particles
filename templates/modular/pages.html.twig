@@ -7,13 +7,13 @@
     {% if modules.members %}
         {% set items_filter = {} %}
         {% if modules.members.children %}
-            {% set items_filter = items_filter|merge(modules.members.children|map(p => {'@page.children': p})) %}
+            {% set items_filter = items_filter|merge({'@page.children': modules.members.children}) %}
         {% endif %}
         {% if modules.members.descendants %}
-            {% set items_filter = items_filter|merge(modules.members.descendants|map(p => {'@page.descendants': p})) %}
+            {% set items_filter = items_filter|merge({'@page.descendants': modules.members.descendants}) %}
         {% endif %}
         {% if modules.members.modules %}
-            {% set items_filter = items_filter|merge(modules.members.modules|map(m => {'@page.modular': m})) %}
+            {% set items_filter = items_filter|merge({'@page.modular': modules.members.modules}) %}
         {% endif %}
 
         {% if items_filter is not empty %}
