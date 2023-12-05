@@ -1,17 +1,17 @@
-name: Modules
-slug: modules
+name: Particles
+slug: particles
 type: theme
 version: 0.1.2
-description: Modules theme based on Quark
+description: Particles theme based on Quark
 icon: rebel
 author:
   name: Vince42
   email: grav@mx24.net
-homepage: https://github.com/Vince42/grav-theme-modules
+homepage: https://github.com/Vince42/grav-theme-particles
 # demo: http://demo.yoursite.com
 # keywords: grav, theme, etc
-bugs: https://github.com/Vince42/grav-theme-modules/issues
-readme: https://github.com/Vince42/grav-theme-modules/blob/develop/README.md
+bugs: https://github.com/Vince42/grav-theme-particles/issues
+readme: https://github.com/Vince42/grav-theme-particles/blob/develop/README.md
 license: MIT
 
 dependencies:

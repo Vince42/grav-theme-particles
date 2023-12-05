@@ -5,7 +5,7 @@ use Grav\Common\Grav;
 use Grav\Common\Theme;
 use RocketTheme\Toolbox\Event\Event;
 
-class Modules extends Quark
+class Particles extends Quark
 {
     public static function getSubscribedEvents() {
         return [
