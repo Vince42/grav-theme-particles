@@ -2,7 +2,7 @@
 The **Particles** Theme is for [Grav CMS](http://github.com/getgrav/grav).  This README.md file should be modified to describe the features, installation, configuration, and general usage of this theme.
 
 ## Description
-The theme is based on Quark.
+The theme is based on [Quark](https://github.com/getgrav/grav-theme-quark).
 
 # Installation
 <!--
@@ -26,6 +26,12 @@ To install this theme, just download the zip version of this repository and unzi
 You should now have all the theme files under
 
     /your/site/grav/user/themes/particles
+
+## Customisation
+
+Particles is adapted from [Quark by Trilby Media](https://github.com/getgrav/grav-theme-quark) and inherits configuration options described in its [README](https://github.com/getgrav/grav-theme-quark/blob/develop/README.md#default-options).
+
+Particles also allows site builders to upload a custom Favicon through Grav's Admin.
 
 ## Usage
 

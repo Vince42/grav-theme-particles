@@ -1,3 +1,4 @@
+{# *** ADAPTATION: fallback for no mobile logo set *** #}
 {% set logo = mobile ? theme_var('custom_logo_mobile')|default(theme_var('custom_logo')) : theme_var('custom_logo') %}
 <a href="{{ home_url }}" class="navbar-brand mr-10">
 {% if logo %}

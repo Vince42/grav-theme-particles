@@ -5,50 +5,50 @@ use Grav\Common\Grav;
 use Grav\Common\Theme;
 use RocketTheme\Toolbox\Event\Event;
 
-class Particles extends Quark
+class Particles extends Theme
 {
     public static function getSubscribedEvents() {
         return [
-            'onTwigLoader' => ['onTwigLoader', 10],
-            'onAdminTwigTemplatePaths' => ['onAdminTwigTemplatePaths', 0],
+            'onThemeInitialized'    => ['onThemeInitialized', 0],
+            'onTwigLoader'          => ['onTwigLoader', 0],
+            'onTwigInitialized'     => ['onTwigInitialized', 0],
         ];
     }
 
-    public function onTwigLoader() {
-        $this->parentHandler('onTwigLoader');
-
-        // add quark theme as namespace to twig
-        $parent_path = Grav::instance()['locator']->findResource('themes://quark');
-        $this->grav['twig']->addPath($parent_path . DIRECTORY_SEPARATOR . 'templates', 'quark');
-        $this->grav['twig']->addPath($parent_path . DIRECTORY_SEPARATOR . 'images', 'images'); // special for Quark's nonsense
+    public function onThemeInitialized()
+    {
+        /* unexplained: this is in the source quark.php */
     }
 
-    private function parentHandler($event) {
-        if(method_exists(parent::class, 'getSubscribedEvents')) {
-            $parent_subscribed_events = parent::getSubscribedEvents();
-
-            if(array_key_exists($event, $parent_subscribed_events)) {
-                $parent_event_handler = array_shift($parent_subscribed_events[$event]);
-                call_user_func([parent::class, $parent_event_handler]);
-            }
+    public function onTwigLoader() {
+        $theme_paths = Grav::instance()['locator']->findResources('theme://images');
+        foreach($theme_paths as $images_path) {
+            $this->grav['twig']->addPath($images_path, 'images');
         }
     }
 
-    // sourced from https://discourse.getgrav.org/t/customize-override-admin-theme/6371/9
-    /**
-     * Register templates and page
-     *
-     * @param RocketTheme\Toolbox\Event\Event $event Event handler
-     *
-     * @return array
-     */
-    public function onAdminTwigTemplatePaths($event)
+    public function onTwigInitialized()
     {
-        $event['paths'] = array_merge(
-            $event['paths'],
-            [__DIR__ . '/admin/themes/grav/templates']
-        );
-        return $event;
+        $twig = $this->grav['twig'];
+
+        $form_class_variables = [
+//            'form_outer_classes' => 'form-horizontal',
+            'form_button_outer_classes' => 'button-wrapper',
+            'form_button_classes' => 'btn',
+            'form_errors_classes' => '',
+            'form_field_outer_classes' => 'form-group',
+            'form_field_outer_label_classes' => 'form-label-wrapper',
+            'form_field_label_classes' => 'form-label',
+//            'form_field_outer_data_classes' => 'col-9',
+            'form_field_input_classes' => 'form-input',
+            'form_field_textarea_classes' => 'form-input',
+            'form_field_select_classes' => 'form-select',
+            'form_field_radio_classes' => 'form-radio',
+            'form_field_checkbox_classes' => 'form-checkbox',
+        ];
+
+        $twig->twig_vars = array_merge($twig->twig_vars, $form_class_variables);
+
     }
 
 }

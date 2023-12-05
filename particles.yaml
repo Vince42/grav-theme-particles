@@ -1,12 +1,3 @@
-streams:
- schemes:
-   theme:
-     type: ReadOnlyStream
-     prefixes:
-       '':
-         - 'user://themes/particles'
-         - 'user://themes/quark'
-
 enabled: true
 production-mode: true
 grid-size: grid-lg
@@ -15,7 +6,7 @@ header-animated: true
 header-dark: false
 header-transparent: false
 sticky-footer: true
-blog-page: /blog
+blog-page: '/blog'
 spectre:
   exp: false
   icons: false
