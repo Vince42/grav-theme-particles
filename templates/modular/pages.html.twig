@@ -1,19 +1,19 @@
 {% set grid_size = theme_var('grid-size') %}
 
 {# create a page collection from headers which are unfortunately not proper page collections, see https://github.com/getgrav/grav-plugin-admin/issues/2280 #}
-{% if page.header.modules %}
+{% if page.header.particles %}
 
-    {% set modules = page.header.modules %}
-    {% if modules.members %}
+    {% set particles = page.header.particles %}
+    {% if particles.members %}
         {% set items_filter = {} %}
-        {% if modules.members.children %}
-            {% set items_filter = items_filter|merge({'@page.children': modules.members.children}) %}
+        {% if particles.members.children %}
+            {% set items_filter = items_filter|merge({'@page.children': particles.members.children}) %}
         {% endif %}
-        {% if modules.members.descendants %}
-            {% set items_filter = items_filter|merge({'@page.descendants': modules.members.descendants}) %}
+        {% if particles.members.descendants %}
+            {% set items_filter = items_filter|merge({'@page.descendants': particles.members.descendants}) %}
         {% endif %}
-        {% if modules.members.modules %}
-            {% set items_filter = items_filter|merge({'@page.modular': modules.members.modules}) %}
+        {% if particles.members.modules %}
+            {% set items_filter = items_filter|merge({'@page.modular': particles.members.modules}) %}
         {% endif %}
 
         {% if items_filter is not empty %}
@@ -21,18 +21,18 @@
         {% endif %}
 
         {# use page.intersect() for the taxonomy selections (rather than page.merge()) #}
-        {% if modules.members.taxonomy %}
-            {% set taxonomy_collection = page.collection({'items': {'@taxonomy': modules.members.taxonomy}}) %}
+        {% if particles.members.taxonomy %}
+            {% set taxonomy_collection = page.collection({'items': {'@taxonomy': particles.members.taxonomy}}) %}
             {% set pages_collection = ( pages_collection is defined ? pages_collection.intersect(taxonomy_collection) : taxonomy_collection )  %}
         {% endif %}
-
+{{ dump('taxonomy_collection', taxonomy_collection)}}
         {# set collection options using collection methods because we needed to instantiate the collection to run intersect() on any taxonomy parameters specified in frontmatter #}
         {% if pages_collection is defined %}
-            {% if modules.order %}
-                {% do pages_collection.order(modules.order.by, modules.order.dir|default('asc')) %}
+            {% if particles.order %}
+                {% do pages_collection.order(particles.order.by, particles.order.dir|default('asc')) %}
             {% endif %}
-            {% if modules.limit %}
-                {% do pages_collection.slice(0, modules.limit) %}
+            {% if particles.limit %}
+                {% do pages_collection.slice(0, particles.limit) %}
             {% endif %}
         {% endif %}
 

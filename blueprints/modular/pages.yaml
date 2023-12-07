@@ -1,4 +1,4 @@
-title: Pages
+title: Particle deck
 '@extends': default
 
 form:
@@ -9,12 +9,12 @@ form:
           fields:
             header.deck_heading:
               type: text
-              label: Group heading for the deck of pages
+              label: Group heading for the deck of page particles
               ordering@: header.title
 
-        modules:
+        particles:
           type: tab
-          title: Modules
+          title: Particles
           fields:
 
             # Preferred output for `members` would have been:
@@ -31,7 +31,7 @@ form:
             # This is necessary because https://github.com/getgrav/grav-plugin-admin/issues/2280
             # .. and also because the Elements field type doesn't seem very mature yet, was hoping a list of those would get me over the line
 
-            header.modules.members:
+            header.particles.members:
               title: 'Show any of these items ...'
               type: section
               # underline: true
@@ -59,7 +59,7 @@ form:
               title: 'Filter for these criteria ...'
               type: section
               fields:
-                header.modules.members.taxonomy:
+                header.particles.members.taxonomy:
                   # label: Filter for these taxonomy terms
                   type: taxonomy
                   multiple: true
@@ -70,13 +70,13 @@ form:
               title: 'Display options'
               type: section
               fields:
-                header.modules.limit:
+                header.particles.limit:
                   type: text
                   label: Max Item Count
                   validate:
                     type: int
                     min: 1
-                header.modules.order.by:
+                header.particles.order.by:
                   type: select
                   label: Order By
                   default: date
@@ -85,7 +85,7 @@ form:
                     title: Title
                     date: Date
                     default: Default
-                header.modules.order.dir:
+                header.particles.order.dir:
                   type: select
                   label: Order
                   default: desc
