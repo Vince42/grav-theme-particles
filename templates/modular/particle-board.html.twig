@@ -57,7 +57,7 @@
                     {{ page.content|raw }}
                     <div id="{{ grid_id }}" class="bricklayer">
                     {% for page in particles_collection %}
-                        {% include 'partials/page-summary.html.twig' with {'page': page} %}
+                        {% include 'partials/particle.html.twig' with {'page': page} %}
                     {% endfor %}
                     </div>
                 {% endblock %}
