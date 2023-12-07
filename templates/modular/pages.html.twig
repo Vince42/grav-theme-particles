@@ -17,22 +17,21 @@
         {% endif %}
 
         {% if items_filter is not empty %}
-            {% set pages_collection = page.collection({'items': items_filter}) %}
+            {% set particles_collection = page.collection({'items': items_filter}) %}
         {% endif %}
 
         {# use page.intersect() for the taxonomy selections (rather than page.merge()) #}
         {% if particles.members.taxonomy %}
             {% set taxonomy_collection = page.collection({'items': {'@taxonomy': particles.members.taxonomy}}) %}
-            {% set pages_collection = ( pages_collection is defined ? pages_collection.intersect(taxonomy_collection) : taxonomy_collection )  %}
+            {% set particles_collection = ( particles_collection is defined ? particles_collection.intersect(taxonomy_collection) : taxonomy_collection ) %}
         {% endif %}
-{{ dump('taxonomy_collection', taxonomy_collection)}}
         {# set collection options using collection methods because we needed to instantiate the collection to run intersect() on any taxonomy parameters specified in frontmatter #}
-        {% if pages_collection is defined %}
+        {% if particles_collection is defined %}
             {% if particles.order %}
-                {% do pages_collection.order(particles.order.by, particles.order.dir|default('asc')) %}
+                {% do particles_collection.order(particles.order.by, particles.order.dir|default('asc')) %}
             {% endif %}
             {% if particles.limit %}
-                {% do pages_collection.slice(0, particles.limit) %}
+                {% do particles_collection.slice(0, particles.limit) %}
             {% endif %}
         {% endif %}
 
@@ -41,7 +40,7 @@
 {% endif %}
 
 {% block body %}
-    {% if pages_collection is defined %}
+    {% if particles_collection is defined %}
         {% do assets.addCss('theme://css/bricklayer.css') %}
         {% do assets.add('theme://js/bricklayer.min.js') %}
 
@@ -57,7 +56,7 @@
                     {% endif %}
                     {{ page.content|raw }}
                     <div id="{{ grid_id }}" class="bricklayer">
-                    {% for page in pages_collection %}
+                    {% for page in particles_collection %}
                         {% include 'partials/page-summary.html.twig' with {'page': page} %}
                     {% endfor %}
                     </div>
